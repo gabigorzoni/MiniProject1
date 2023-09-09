@@ -1,0 +1,8 @@
+Modern Web Technologies - CPAN-212-0NA
+
+Instructor: Dor Zairi
+
+
+Week 1 - Mini Project 1
+
+Example of a file to read.
