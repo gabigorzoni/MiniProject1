@@ -1,0 +1,37 @@
+<h1>My users:</h1>
+
+<%# sort button %>
+<form action="/api/users/sort<%=users.name %>" method="GET">
+  <input type="hidden" name="sort" value="name" />
+  <button type="submit">Sort by name</button>
+</form>
+
+<%# sort button %>
+<form action="/api/users/sort<%=users.id %>" method="GET">
+  <input type="hidden" name="sort" value="id" />
+  <button type="submit">Sort by ID</button>
+</form>
+
+<form action="/api/users/filter" method="GET">
+  <label for="filter">Filter by name:</label>
+  <input type="text" name="filter" id="filter">
+  <button type="submit">Filter</button>
+</form>
+
+<%# Start of EJS scriptlet for looping through the 'users' array %>
+<% for(i = 0; i < users.length; i++) { %>
+
+  <div>
+    <h4><%= users[i].name %></h4>
+
+    <%# update button %>
+    <form action="/api/users/update/<%= users[i].id %>" method="GET">
+      <input type="hidden" name="_method" value="PUT">
+			<input type="text" name="name" id="name" placeholder="<%= users[i].name %>">      
+			<button type="submit">Update</button>
+    </form>
+  </div>
+
+<% } %>
+
+<%# End of EJS scriptlet %>
