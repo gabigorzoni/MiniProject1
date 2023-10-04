@@ -1,4 +1,8 @@
-{
-  "id": "3",
-  "name": "Moana"
-}
+[
+  {"id": "1", "name": "Gabriela"},
+  {"id": "2", "name": "Christian"},
+  {"id": "3", "name": "Moana"},
+  {"id": "4", "name": "Joud" },
+  {"id": "5", "name": "Mayara"},
+  {"id": "6", "name": "Peter"}
+]

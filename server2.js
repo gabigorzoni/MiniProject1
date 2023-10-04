@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const path = require('path');
+const fs = require('fs').promises; 
 
 app.use(express.urlencoded());
 app.use(express.json());
@@ -13,23 +15,19 @@ console.log(`${req.method} request for ${req.url}`);
 next()
 })
 
-
-const users = [
-    { id: 1, name: 'Gabriela' },
-    { id: 2, name: 'Christian' },
-    { id: 3, name: 'Moana' },
-    { id: 4, name: 'Joud' },
-    { id: 5, name: 'Mayara' },
-    { id: 6, name: 'Peter' }
-]
-
 app.get('/', (req, res) =>{
     res.send(`<button ><a href="/api/users""> users </a> </button> <button ><a href="/api/users/add""> add users </a> </button> `)
 })
 
-app.get('/api/users', (req,res) =>{
-    res.render("users.ejs", {users})
-})
+app.get('/api/users', async (req,res) =>{
+    try{
+        const data = await fs.readFile(path.join(__dirname, 'users.json'), 'utf8');
+        const usersData = JSON.parse(data);
+        res.status(200).render('users.ejs', { users: usersData });
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    } 
+});
 
 app.get('/api/users/add', (req,res) =>{
     res.render('userForm.ejs');
@@ -41,35 +39,49 @@ app.get('/api/users/add/:id', (req,res) =>{
 })
 
 //Sort the users
-app.get('/api/users/sort', (req, res) => {
+app.get('/api/users/sort', async (req, res) => {
     const { sort } = req.query;
-    let sortedUsers = [...users];
+    let sortedUsers = [];
 
-    if (sort) {
-        sortedUsers.sort((a, b) => {
-            if (a[sort] < b[sort]) return -1;
-            if (a[sort] > b[sort]) return 1;
-            return 0;
-        });
+    try{
+        const data = await fs.readFile(path.join(__dirname, 'users.json'), 'utf8');
+        sortedUsers = JSON.parse(data);
+
+        if (sort) {
+            sortedUsers.sort((a, b) => {
+                if (a[sort] < b[sort]) return -1;
+                if (a[sort] > b[sort]) return 1;
+                return 0;
+            });
+        }
+        res.status(200).json(sortedUsers);
+    } catch (error) {
+
+        res.status(500).send('Internal Server Error');
+
     }
-    res.status(200).json(sortedUsers);
 });
 
 //Filter the users
-app.get('/api/users/filter', (req, res) => {
+app.get('/api/users/filter', async (req, res) => {
     const {filter} = req.query;
 
-    let filteredUser = [...users];
+    try {
+        const data = await fs.readFile(path.join(__dirname, 'users.json'), 'utf8');
+        const users = JSON.parse(data);
 
-    if (filter) {
-        const filterName = filter.toLowerCase();
-        filteredUser = filteredUser.filter(user =>
-            user.name.toLowerCase().includes(filterName)
-        );
-    }
+        let filteredUser = [...users];
 
-    res.status(200).json(filteredUser);
-   
+        if (filter) {
+            const filterName = filter.toLowerCase();
+            filteredUser = filteredUser.filter(user =>
+                user.name.toLowerCase().includes(filterName)
+            );
+        }
+        res.status(200).json(filteredUser);
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
+    }   
 });
 
 
@@ -103,6 +115,7 @@ app.put('/api/users/update/:id', (req, res) => {
       res.status(404).send(`User with ID ${userId} not found.`);
     }
   });
+
 
 app.listen(port, ()=>{
     console.log(`Server running at http://localhost:${port}/`);
