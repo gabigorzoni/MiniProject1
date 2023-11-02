@@ -3,7 +3,7 @@ import './App.css';
 
 function ExercisesList ({exercises}){
   return (
-    <div class="exercisesList">
+    <div className="exercisesList">
       <ul>
         {exercises.map(exercise => (
           <li key={exercise.id}>{exercise.name}</li>

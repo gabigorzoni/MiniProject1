@@ -30,7 +30,7 @@ function Button({setExercises}) {
 
 
   return (
-    <div class="divButton">
+    <div className="divButton">
       <button onClick={handleRefresh} class="button">Refresh</button>
     </div>
   );
