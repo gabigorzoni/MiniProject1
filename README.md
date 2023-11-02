@@ -38,4 +38,3 @@
     - npm start for the front-end
     - nodemon server.js for the back-end
 - Open the browser on the 'http://localhost:3000' to test the project
-
