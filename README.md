@@ -17,3 +17,16 @@
 - Run the project
 - Open the browser on the 'http://localhost:3000' to test the project
 
+# Mini Project 5:
+# This project consists of two main parts: The front-end part of the application built with React and the back-end part of the application built with Express (It serves the exercise data from a JSON file).
+# Users can refresh the exercise list and track the number of repetitions.
+
+# The application is styled using CSS. The styling is defined in the App.css file.
+
+# How to run
+- Clone this project to your repository
+- Navigate to the project directory
+- Run the front-end and the back-end in two terminals:
+    - npm start for the front-end
+    - nodemon server.js for the back-end
+- Open the browser on the 'http://localhost:3000' to test the project
