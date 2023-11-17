@@ -38,3 +38,12 @@
     - npm start for the front-end
     - nodemon server.js for the back-end
 - Open the browser on the 'http://localhost:3000' to test the project
+
+# Mini Project 7:
+- Node.js server using the Express framework to create a simple API that connects to a MongoDB database.
+- Establishes a connection with the MongoDB database using the mongodb package.
+- The code includes try/catch blocks to catch and handle errors that might occur during database operations or API routes.
+# How to run
+- Clone this project to your repository
+- Run the project using 'nodemon server.js' on your terminal
+- Open the browser on the 'http://localhost:3000' to test the project
