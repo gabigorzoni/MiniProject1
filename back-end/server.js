@@ -8,8 +8,7 @@ const uri = 'mongodb://localhost:27017';
 
 app.use(express.urlencoded());
 app.use(express.json());
-app.use(express.static('C:/Users/gabig/OneDrive/Área de Trabalho/Humber College/CPAN212_ModernWebTechnologies/MiniProject7/MiniProject1/front-end'));
-app.set('views', 'C:/Users/gabig/OneDrive/Área de Trabalho/Humber College/CPAN212_ModernWebTechnologies/MiniProject7/MiniProject1/front-end/views');
+app.set('views');
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 
@@ -38,14 +37,14 @@ app.get('/api/users', async (req, res) => {
   try {
     const collection = db.collection('users');
     const users = await collection.find({}).toArray();
-    res.render('users.ejs', { users });
+    res.status(200).json({ users });
   } catch (error) {
     res.status(500).send('Internal Server Error');
   }
 });
 
 app.get('/api/users/add', (req, res) => {
-  res.render('userForm.ejs');
+  res.status(200).json('userForm.ejs');
 });
 
 app.post('/api/users', async (req, res) => {
@@ -65,7 +64,7 @@ app.put('/api/users/update/:id', async (req, res) => {
     const updatedName = req.body.name;
     const collection = db.collection('users');
     const user = await collection.findOneAndUpdate(
-      { id: userId },
+      { _id: userId },
       { $set: { name: updatedName } },
       { returnOriginal: false }
     );
