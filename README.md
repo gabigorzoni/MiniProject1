@@ -50,3 +50,26 @@
 - Clone this project to your repository
 - Run the project using 'nodemon server.js' on your terminal
 - Open the browser on the 'http://localhost:3000' to test the project
+
+# Mini Project 8:
+- This is a simple user tracking application built with Express.js, React, and MongoDB.
+- Make sure you have the following tools installed in your development environment:
+    - Node.js
+    - MongoDB
+    - Git (optional but useful for cloning the repository)
+
+# Features
+- List Users: View the list of users.
+- Add User: Add a new user to the list.
+- Update User: Edit an existing user.
+- Delete User: Remove a user from the list.
+
+# Project Structure
+- backend: Contains the Node.js server code with Express and database configuration.
+- frontend: React application with the user interface.
+
+# How to run
+- Clone this project to your repository
+- Run 'nodemon server.js' on your terminal inside the back-end folder.
+- Run 'npm start' on your terminal inside the front-end folder.
+- Your browser will be open automatically from the front-end. 
