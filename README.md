@@ -1,3 +1,6 @@
+# Code Climate
+<a href="https://codeclimate.com/github/gabigorzoni/MiniProject1/maintainability"><img src="https://api.codeclimate.com/v1/badges/42627122f1432ccebe58/maintainability" /></a>
+
 # MiniProject1
 # MiniProject2 - Get and Post Methods 
 # MiniProject3 - RESTful APIs: I created a new page server2.js, adding the features to filter and sort the users.
