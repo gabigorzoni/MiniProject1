@@ -31,20 +31,38 @@ function UsersList() {
       setUserToUpdate(null);
     };
 
+    const deleteUser = async (userId) => {
+      try {
+        const response = await fetch(`/api/users/${userId}`, {
+          method: 'DELETE',
+        });
+  
+        if (response.ok) {
+          const updatedUsers = users.filter((user) => user._id !== userId);
+          setUsers(updatedUsers);
+        } else {
+          console.error(`Failed to delete user with ID ${userId}`);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
   return (
-    <div>
-      <h1>User List</h1>
+    <div className="usersList">
+      <h1 class="title">Users List</h1>
       <ul>
         {users.map(user => (
           <li key={user._id}>
             {user.name}
-            <button onClick={() => setUserToUpdate(user)}>Update</button>
+            <button className="button" onClick={() => setUserToUpdate(user)}>Update</button>
+            <button className="button" onClick={() => deleteUser(user._id)}>Delete</button>
           </li>
           
         ))}
       </ul>
       <Link to="/add-user">
-        <button>Add User</button>
+        <button className="button">Add User</button>
       </Link>
 
       {userToUpdate && <UpdateUser user={userToUpdate} updateUser={updateUser} />}

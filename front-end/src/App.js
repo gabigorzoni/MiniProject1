@@ -6,12 +6,14 @@ import AddUser from './components/AddUser';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<UsersList />} />
-        <Route path="/add-user" element={<AddUser />} />
-      </Routes>
-    </Router>
+    <div class="mainDiv">
+      <Router>
+        <Routes>
+          <Route path="/" element={<UsersList />} />
+          <Route path="/add-user" element={<AddUser />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
