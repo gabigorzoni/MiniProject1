@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-function UpdateUser({ user, updateUser }) {
-  const [updatedName, setUpdatedName] = useState(user.name);
+function UpdateName({ name, updateName }) {
+  const [updatedName, setUpdatedName] = useState(name.name);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`/api/users/update/${user._id}`, {
+      const response = await fetch(`/api/users/update/${name._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -16,9 +16,9 @@ function UpdateUser({ user, updateUser }) {
       });
 
       if (response.ok) {
-        updateUser(user._id, updatedName);
+        updateUser(name._id, updatedName);
       } else {
-        console.error(`Failed to update user with ID ${user._id}`);
+        console.error(`Failed to update user with ID ${name._id}`);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -27,7 +27,7 @@ function UpdateUser({ user, updateUser }) {
 
   return (
     <div>
-      <h2>Update User</h2>
+      <h2>Update Name</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
@@ -38,10 +38,10 @@ function UpdateUser({ user, updateUser }) {
             required
           />
         </label>
-        <button type="submit">Update User</button>
+        <button type="submit">Update Name</button>
       </form>
     </div>
   );
 }
 
-export default UpdateUser;
+export default UpdateName;
