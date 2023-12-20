@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function AddUser() {
+function AddName() {
   const [name, setName] = useState('');
 
   const handleSubmit = async (e) => {   
@@ -28,18 +28,18 @@ function AddUser() {
 
   return (
     <div>
-      <h1 class="title">Add User</h1>
+      <h1 class="title">Add a Name</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Name:
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
         </label>
-        <button className="button" type="submit">Add User</button>
+        <button className="button" type="submit">Add Name</button>
       </form>
       <br />
-      <Link to="/" className="button">Back to Users List</Link>
+      <Link to="/" className="button">Back to Names List</Link>
     </div>
   );
 }
 
-export default AddUser;
+export default AddName;

@@ -73,3 +73,5 @@
 - Run 'nodemon server.js' on your terminal inside the back-end folder.
 - Run 'npm start' on your terminal inside the front-end folder.
 - Your browser will be open automatically from the front-end. 
+
+# Mini Project 9
